@@ -3,7 +3,7 @@ import {useState} from 'react'
 import axios from 'axios'
 import { Button, TextField } from '@mui/material'
 
-export default function AddUserForm({backendPath, onChange}) {
+export default function AddUserForm({backendPath, onChange, dataUpdate, onUpdate}) {
     const [newUser, setNewUser] = useState({
         name: '',
         age: 0,
@@ -32,7 +32,10 @@ export default function AddUserForm({backendPath, onChange}) {
             }
             return arr
             })
-            .then(res => onChange(res))
+            .then(res => {
+                onChange(res)
+                onUpdate(!dataUpdate)
+            })
         )
     }
   return (

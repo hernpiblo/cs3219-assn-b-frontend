@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Button, List, ListItem, Typography } from '@mui/material'
 import { Container } from '@mui/system'
 
-export default function User({user, backendPath, onChange}) {
+export default function User({user, backendPath, onChange, dataUpdate, onUpdate}) {
   const deleteHandler = e => {
     if (!user.userId) {
       return window.alert("Nothing to delete")
@@ -27,7 +27,10 @@ export default function User({user, backendPath, onChange}) {
       }
       return arr
       })
-      .then(res => onChange(res))
+      .then(res => {
+        onChange(res)
+        onUpdate(!dataUpdate)
+      })
   )
     }
   return (
